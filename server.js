@@ -140,6 +140,12 @@ app.post('/api/chat', async (req, res) => {
 
     const data = await response.json();
     const reply = data.content?.[0]?.text ?? 'エラーが発生しました。';
+    console.log('=== チャットログ ===');
+messages.forEach(function(m) {
+  const role = m.role === 'user' ? '【訪問者】' : '【AI】';
+  console.log(role + ' ' + m.content);
+});
+console.log('===================');
     res.json({ reply });
 
   } catch (err) {
